@@ -1,4 +1,4 @@
-function [L, K_new, V_new] = Controller_Observer(sys)
+function [L, K_new, V_new] = LQR_Luenberger(sys)
 %% Observer
 % The observer should have a fast convergence speed and have a significant influence to the measurement noise.
 % Assigning observer poles

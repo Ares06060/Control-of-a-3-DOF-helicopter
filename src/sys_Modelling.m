@@ -1,12 +1,13 @@
-function [sys, m, n] = sys_Modelling(var, Moments)
+function [sys_Linear, m, n] = sys_Modelling(var, Moments)
 
-% Linearisierung
+% define the variables 
 x = [var.alpha; var.beta; var.gamma; var.alphadot; var.betadot; var.gammadot];   % State quantity
 u = [var.Ff; var.Fb];                       % input vector of the system
 y = [var.alpha; var.beta; var.gamma];       % output vector of the system
 x_s = [0; 0*pi/180; 0; 0; 0; 0];            % stable point of the system
 
-% Get the derivative of the state quantity(left side of the State space eq.)
+
+% System dynamic functions
 x_dot = [var.alphadot; var.betadot; var.gammadot; Moments.alphadot_2; Moments.betadot_2; Moments.gammadot_2];
 
 % Find the derivative of the states at the stable point
@@ -43,7 +44,7 @@ A = double(A);
 B = double(B);
 C = double(C);
 D = double(D);
-sys = ss(A,B,C,D);
+sys_Linear = ss(A,B,C,D);
 
 CONT=ctrb(A,B); % controllability
 m = rank(CONT);

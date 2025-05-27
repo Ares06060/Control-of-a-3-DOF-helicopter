@@ -59,9 +59,7 @@ Moments = calc_Moment(len, wei, var, Inertia);
 poles = pole(sys_Linear);
 natural_freq = abs(poles);
 max_freq = max(natural_freq);       % 系统带宽fc
-Dt = 2*pi/(20*max_freq);            % 采样频率为系统带宽的10-20倍, 计算得到的采样间隔为0.1096
-
-dt = 0.1;                           % 为了简便，取0.1s
+dt = 2*pi/(20*max_freq);            % 采样频率为系统带宽的10-20倍, 0.
 
 % discretize the linear system modell for MPC
 sys_MPC = c2d(sys_Linear, dt, 'zoh');       % 对于线性系统，使用c2d精度高且计算效率好
